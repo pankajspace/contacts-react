@@ -7,7 +7,7 @@ import * as constants from '../constants/constants';
 const ContactList = (props) => {
 
     const renderContactNames = () => {
-        return props.contacts.map((contact, index) => {
+        return props.contactsList.map((contact, index) => {
             return (
                 <React.Fragment key={index} >
                     <div className={`${styles.contacts_list_item} col-sm-2`} >{contact.name}</div>
