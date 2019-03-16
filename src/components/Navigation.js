@@ -6,7 +6,7 @@ const Navigation = (props) => {
         <ul className="nav">
             <li className="nav-item">
                 <NavLink
-                    to="/contacts/"
+                    to="/contacts/list"
                     exact
                     className="nav-link"
                     activeClassName="active"

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
-import ContactList from '../components/ContactsList';
 import Navigation from '../components/Navigation';
+import ContactList from '../components/ContactsList';
+import ContactCreate from '../components/ContactsCreate';
 
 class Contacts extends Component {
 
@@ -17,16 +19,13 @@ class Contacts extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation />
-                <div className="pad-10-px">
-                    <div className="col-sm-12 col-md-12 txt-right" >
-                        <button type="button" className="btn btn-secondary">
-                            Create Contact <span className="badge badge-success">+</span>
-                        </button>
-                    </div>
-                </div>
+                <Navigation />                
                 <div className="col-sm-12 col-md-12">
-                    <ContactList contacts={this.state.contacts} />
+                    <Switch>
+                        <Route path="/contacts/list" component={() => <ContactList contacts={this.state.contacts} />} />
+                        <Route path="/contacts/create" component={ContactCreate} />
+                        <Redirect from="*" to="/contacts/list" />
+                    </Switch>
                 </div>
             </React.Fragment>
         )
