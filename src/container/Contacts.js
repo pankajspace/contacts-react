@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ContactList from '../components/ContactsList';
+import Navigation from '../components/Navigation';
 
 class Contacts extends Component {
 
@@ -16,20 +17,16 @@ class Contacts extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="row pad-10-px">
-                    <div className="col-sm-6 col-md-6">
-                        <h2>Contacts</h2>
-                    </div>
-                    <div className="col-sm-6 col-md-6 txt-right" >
-                        <button type="button" class="btn btn-secondary">
-                            Create Contact <span class="badge badge-success">+</span>
+                <Navigation />
+                <div className="pad-10-px">
+                    <div className="col-sm-12 col-md-12 txt-right" >
+                        <button type="button" className="btn btn-secondary">
+                            Create Contact <span className="badge badge-success">+</span>
                         </button>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-sm-12 col-md-12">
-                        <ContactList contacts={this.state.contacts} />
-                    </div>
+                <div className="col-sm-12 col-md-12">
+                    <ContactList contacts={this.state.contacts} />
                 </div>
             </React.Fragment>
         )
