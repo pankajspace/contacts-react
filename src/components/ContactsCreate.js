@@ -6,10 +6,21 @@ import * as constants from '../constants/constants';
 
 const ContactCreate = (props) => {
 
+    const renderMessage = () => {
+        if (props.submitSuccess) {
+            return (
+                <div className="alert alert-success" role="alert">
+                    Contact created successfully!
+                </div>
+            )
+        }
+    }
+
     return (
         <div className={`row ${styles.contacts_form}`}>
             <div className="col-sm-8 offset-sm-2">
-                <form method="post" onSubmit={props.handleSubmit}>
+                {renderMessage()}
+                <form>
                     <div className="form-group">
                         <label htmlFor="name">{constants.name}</label>
                         <input type="text" value={props.formData.name}
@@ -40,7 +51,7 @@ const ContactCreate = (props) => {
                             onChange={props.handleChange}
                             className="form-control" name="notes" id="notes" placeholder="Enter your notes." />
                     </div>
-                    <button type="submit" className="btn btn-primary">{constants.submit}</button>
+                    <button type="submit" onClick={props.handleSubmit} className="btn btn-primary">{constants.submit}</button>
                 </form>
             </div>
         </div>

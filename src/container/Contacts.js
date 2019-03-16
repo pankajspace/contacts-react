@@ -19,33 +19,42 @@ class Contacts extends Component {
                 phone: "",
                 email: "",
                 notes: ""
-            }
+            },
+            submitSuccess: false
         }
     }
 
     handleChange = (event) => {
-        console.log("handleChange", event.target.value);
+        // console.log("handleChange", event.target.value);
         const formData = { ...this.state.formData };
-        const contactsList = [...this.state.contactsList];
         this.setState({
             formData: {
                 ...formData,
                 [event.target.name]: event.target.value
-            }
+            },
+            submitSuccess: false
         });
     }
 
     handleSubmit = (event) => {
-        console.log("handleSubmit", event);
+        // console.log("handleSubmit", event);
         const formData = { ...this.state.formData };
         const contactsList = [...this.state.contactsList];
         this.setState({
-            formData: formData,
+            formData: {
+                name: "",
+                address: "",
+                phone: "",
+                email: "",
+                notes: ""
+            },
             contactsList: [
                 ...contactsList,
                 formData
-            ]
+            ],
+            submitSuccess: true
         });
+        document.documentElement.scrollTop = 0;
         event.preventDefault();
     }
 
@@ -65,6 +74,7 @@ class Contacts extends Component {
                             render={() =>
                                 <ContactCreate
                                     formData={this.state.formData}
+                                    submitSuccess={this.state.submitSuccess}
                                     handleChange={this.handleChange}
                                     handleSubmit={this.handleSubmit} />
                             }
