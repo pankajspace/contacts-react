@@ -8,16 +8,16 @@ const Navigation = (props) => {
                 <NavLink
                     to="/contacts/"
                     exact
-                    activeClassName="active"
                     className="nav-link"
+                    activeClassName="active"
                 >Contacts List</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink
                     to="/contacts/create/"
                     exact
-                    activeClassName="active"
                     className="nav-link"
+                    activeClassName="active"
                 >Create Contact</NavLink>
             </li>
         </ul>
