@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Navigation from '../components/Navigation';
 import ContactList from '../components/ContactsList';
@@ -19,7 +19,7 @@ class Contacts extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navigation />                
+                <Navigation />
                 <div className="col-sm-12 col-md-12">
                     <Switch>
                         <Route path="/contacts/list" component={() => <ContactList contacts={this.state.contacts} />} />

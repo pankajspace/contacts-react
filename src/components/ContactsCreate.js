@@ -7,27 +7,30 @@ import * as constants from '../constants/constants';
 const ContactCreate = (props) => {
 
     return (
-        <div className={"row"}>
-            <div className="col-sm-12">
+        <div className={`row ${styles.contacts_form}`}>
+            <div className="col-sm-8 offset-sm-2">
                 <form>
                     <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" />
-                        <small id="emailHelp" className="form-text text-muted">
-                            We'll never share your email with anyone else.
-                        </small>
+                        <label htmlFor="name">{constants.name}</label>
+                        <input type="text" className="form-control" name="name" id="name" placeholder="Enter your name." />
                     </div>
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                        <label htmlFor="address">{constants.address}</label>
+                        <textarea className="form-control" name="address" id="address" placeholder="Enter your address." />
                     </div>
-                    <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" for="exampleCheck1">
-                            Check me out
-                        </label>
+                    <div className="form-group">
+                        <label htmlFor="phone">{constants.phone}</label>
+                        <input type="text" className="form-control" name="phone" id="phone" placeholder="Enter your phone." />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <div className="form-group">
+                        <label htmlFor="email">{constants.email}</label>
+                        <input type="email" className="form-control" id="email" placeholder="Enter your email." />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="notes">{constants.notes}</label>
+                        <textarea className="form-control" name="notes" id="notes" placeholder="Enter your notes." />
+                    </div>
+                    <button type="submit" className="btn btn-primary">{constants.submit}</button>
                 </form>
             </div>
         </div>
