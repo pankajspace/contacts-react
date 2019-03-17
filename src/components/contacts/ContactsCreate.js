@@ -3,6 +3,8 @@ import React from 'react';
 import styles from './ContactCreate.module.css';
 
 import * as CONSTANTS from '../../constants/constants';
+import TextField from '../common/TextField';
+import TextArea from '../common/TextArea';
 
 const ContactCreate = (props) => {
 
@@ -29,23 +31,37 @@ const ContactCreate = (props) => {
             <div className="col-sm-8 offset-sm-2">
                 {renderMessage()}
                 <div className="form-group">
-                    <label htmlFor="name">{CONSTANTS.name}*</label>
-                    <input type="text" value={props.formData.name}
-                        onChange={props.handleInputChange}
-                        className="form-control" name="name" id="name" placeholder="Enter your name."
+                    <TextField
+                        data={
+                            {
+                                handleInputChange: props.handleInputChange,
+                                placeholder: CONSTANTS.namePlaceholder,
+                                label: CONSTANTS.name,
+                                name: "name",
+                                value: props.formData.name,
+                                isRequired: true,
+                                isError: props.validationFlags.nameError,
+                                errorMessage: CONSTANTS.nameError,
+                                className: "form-control"
+                            }
+                        }
                     />
-                    {
-                        props.validationFlags.nameError ?
-                            <div className="alert alert-danger" role="alert">
-                                {CONSTANTS.nameError}
-                            </div> : null
-                    }
                 </div>
                 <div className="form-group">
-                    <label htmlFor="address">{CONSTANTS.address}</label>
-                    <textarea value={props.formData.address}
-                        onChange={props.handleInputChange}
-                        className="form-control" name="address" id="address" placeholder="Enter your address."
+                    <TextArea
+                        data={
+                            {
+                                handleInputChange: props.handleInputChange,
+                                placeholder: CONSTANTS.addressPlaceholder,
+                                label: CONSTANTS.address,
+                                name: "address",
+                                value: props.formData.address,
+                                isRequired: true,
+                                isError: props.validationFlags.addressError,
+                                errorMessage: CONSTANTS.addressError,
+                                className: "form-control"
+                            }
+                        }
                     />
                 </div>
                 <div className="form-group">
@@ -75,10 +91,23 @@ const ContactCreate = (props) => {
                     }
                 </div>
                 <div className="form-group">
-                    <label htmlFor="notes">{CONSTANTS.notes}</label>
+                    {/* <label htmlFor="notes">{CONSTANTS.notes}</label>
                     <textarea value={props.formData.notes}
                         onChange={props.handleInputChange}
                         className="form-control" name="notes" id="notes" placeholder="Enter your notes."
+                    /> */}
+                    <TextArea
+                        data={
+                            {
+                                handleInputChange: props.handleInputChange,
+                                placeholder: CONSTANTS.notesPlaceholder,
+                                label: CONSTANTS.notes,
+                                name: "notes",
+                                value: props.formData.notes,
+                                isRequired: false,
+                                className: "form-control"
+                            }
+                        }
                     />
                 </div>
                 <button onClick={props.handleSubmit} className="btn btn-primary">{CONSTANTS.submit}</button>

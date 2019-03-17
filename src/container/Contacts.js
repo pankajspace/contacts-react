@@ -23,6 +23,7 @@ class Contacts extends Component {
             },
             validationFlags: {
                 nameError: false,
+                addressError: false,
                 phoneError: false,
                 emailError: false
             },
@@ -40,6 +41,7 @@ class Contacts extends Component {
             },
             validationFlags: {
                 nameError: false,
+                addressError: false,
                 phoneError: false,
                 emailError: false
             },
@@ -49,11 +51,16 @@ class Contacts extends Component {
 
     validateContactsForm = (formData) => {
         let nameError = false;
+        let addressError = false;
         let phoneError = false;
         let emailError = false;
 
         if (formData.name.trim().length === 0) {
             nameError = true;
+        }
+
+        if (formData.address.trim().length === 0) {
+            addressError = true;
         }
    
         if (formData.phone.trim().length === 0) {
@@ -64,11 +71,12 @@ class Contacts extends Component {
             emailError = true;
         }
 
-        if (nameError || phoneError || emailError) {
+        if (nameError|| addressError || phoneError || emailError) {
             this.setState({
                 submitSuccess: false,
                 validationFlags: {
                     nameError: nameError,
+                    addressError: addressError,
                     phoneError: phoneError,
                     emailError: emailError
                 }
@@ -93,6 +101,7 @@ class Contacts extends Component {
             },
             validationFlags: {
                 nameError: false,
+                addressError: false,
                 phoneError: false,
                 emailError: false
             },
