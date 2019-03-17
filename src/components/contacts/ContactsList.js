@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './ContactsList.module.css';
 
-import * as constants from '../constants/constants';
+import * as CONSTANTS from '../../constants/constants';
 
 const ContactList = (props) => {
 
@@ -22,11 +22,11 @@ const ContactList = (props) => {
 
     return (
         <div className={"row contacts_list"}>
-            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{constants.name}</div>
-            <div className={`${styles.contacts_list_item_header} col-sm-3`} >{constants.address}</div>
-            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{constants.phone}</div>
-            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{constants.email}</div>
-            <div className={`${styles.contacts_list_item_header} col-sm-3`} >{constants.notes}</div>
+            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{CONSTANTS.name}</div>
+            <div className={`${styles.contacts_list_item_header} col-sm-3`} >{CONSTANTS.address}</div>
+            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{CONSTANTS.phone}</div>
+            <div className={`${styles.contacts_list_item_header} col-sm-2`} >{CONSTANTS.email}</div>
+            <div className={`${styles.contacts_list_item_header} col-sm-3`} >{CONSTANTS.notes}</div>
             {renderContactNames()}
         </div>
     )

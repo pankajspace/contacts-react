@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Navigation from '../components/Navigation';
-import ContactList from '../components/ContactsList';
-import ContactCreate from '../components/ContactsCreate';
+import { validateEmail } from '../utils/utils';
+import Navigation from '../components/contacts/Navigation';
+import ContactList from '../components/contacts/ContactsList';
+import ContactCreate from '../components/contacts/ContactsCreate';
 
 class Contacts extends Component {
 
@@ -20,25 +21,67 @@ class Contacts extends Component {
                 email: "",
                 notes: ""
             },
-            submitSuccess: false
+            validationFlags: {
+                nameError: false,
+                phoneError: false,
+                emailError: false
+            },
+            submitSuccess: null
         }
     }
 
-    handleChange = (event) => {
-        // console.log("handleChange", event.target.value);
+    handleInputChange = (event) => {
+        // console.log("handleInputChange", event.target.value);
         const formData = { ...this.state.formData };
         this.setState({
             formData: {
                 ...formData,
                 [event.target.name]: event.target.value
             },
+            validationFlags: {
+                nameError: false,
+                phoneError: false,
+                emailError: false
+            },
             submitSuccess: false
         });
     }
 
-    handleSubmit = (event) => {
-        // console.log("handleSubmit", event);
-        const formData = { ...this.state.formData };
+    validateContactsForm = (formData) => {
+        let nameError = false;
+        let phoneError = false;
+        let emailError = false;
+
+        if (formData.name.trim().length === 0) {
+            nameError = true;
+        }
+   
+        if (formData.phone.trim().length === 0) {
+            phoneError = true;
+        }
+
+        if (formData.email.trim().length === 0 || validateEmail(formData.email.trim()) === false) {
+            emailError = true;
+        }
+
+        if (nameError || phoneError || emailError) {
+            this.setState({
+                submitSuccess: false,
+                validationFlags: {
+                    nameError: nameError,
+                    phoneError: phoneError,
+                    emailError: emailError
+                }
+            })
+            document.documentElement.scrollTop = 0;
+            return false;
+        }
+
+        document.documentElement.scrollTop = 0;
+        return true;
+    }
+
+    submitContactsForm = (formData) => {
         const contactsList = [...this.state.contactsList];
         this.setState({
             formData: {
@@ -48,6 +91,11 @@ class Contacts extends Component {
                 email: "",
                 notes: ""
             },
+            validationFlags: {
+                nameError: false,
+                phoneError: false,
+                emailError: false
+            },
             contactsList: [
                 ...contactsList,
                 formData
@@ -55,6 +103,15 @@ class Contacts extends Component {
             submitSuccess: true
         });
         document.documentElement.scrollTop = 0;
+    }
+
+    handleSubmit = (event) => {
+        // console.log("handleSubmit", event);
+        const formData = { ...this.state.formData };
+        if (this.validateContactsForm(formData) === false) {
+            return false;
+        }
+        this.submitContactsForm(formData);
         event.preventDefault();
     }
 
@@ -74,8 +131,9 @@ class Contacts extends Component {
                             render={() =>
                                 <ContactCreate
                                     formData={this.state.formData}
+                                    validationFlags={this.state.validationFlags}
                                     submitSuccess={this.state.submitSuccess}
-                                    handleChange={this.handleChange}
+                                    handleInputChange={this.handleInputChange}
                                     handleSubmit={this.handleSubmit} />
                             }
                         />
