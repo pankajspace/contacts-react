@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Suspense, lazy, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { validateEmail } from '../utils/utils';
 import Navigation from '../components/contacts/Navigation';
-import ContactList from '../components/contacts/ContactsList';
-import ContactCreate from '../components/contacts/ContactsCreate';
+
+const ContactCreate = lazy(() => import('../components/contacts/ContactsCreate'));
+const ContactList = lazy(() => import('../components/contacts/ContactsList'));
 
 class Contacts extends Component {
 
@@ -62,7 +63,7 @@ class Contacts extends Component {
         if (formData.address.trim().length === 0) {
             addressError = true;
         }
-   
+
         if (formData.phone.trim().length === 0) {
             phoneError = true;
         }
@@ -71,7 +72,7 @@ class Contacts extends Component {
             emailError = true;
         }
 
-        if (nameError|| addressError || phoneError || emailError) {
+        if (nameError || addressError || phoneError || emailError) {
             this.setState({
                 submitSuccess: false,
                 validationFlags: {
@@ -126,7 +127,8 @@ class Contacts extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            // <React.Fragment>
+            <Suspense fallback={<div>Loading...</div>}>
                 <Navigation />
                 <div className="col-sm-12 col-md-12">
                     <Switch>
@@ -149,9 +151,11 @@ class Contacts extends Component {
                         <Redirect from="*" to="/contacts/list" />
                     </Switch>
                 </div>
-            </React.Fragment>
+            </Suspense>
+            // </React.Fragment>
         )
     }
+
 }
 
 export default Contacts;

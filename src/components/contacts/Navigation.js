@@ -10,7 +10,7 @@ const Navigation = (props) => {
                 </NavLink>
             </li>
             <li className="nav-item">
-                <NavLink to="/contacts/create/" exact className="nav-link" activeClassName="active">
+                <NavLink to="/contacts/create" exact className="nav-link" activeClassName="active">
                     <h4>Create Contact</h4>
                 </NavLink>
             </li>

@@ -91,11 +91,6 @@ const ContactCreate = (props) => {
                     }
                 </div>
                 <div className="form-group">
-                    {/* <label htmlFor="notes">{CONSTANTS.notes}</label>
-                    <textarea value={props.formData.notes}
-                        onChange={props.handleInputChange}
-                        className="form-control" name="notes" id="notes" placeholder="Enter your notes."
-                    /> */}
                     <TextArea
                         data={
                             {
